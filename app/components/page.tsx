@@ -59,8 +59,9 @@ export default function ComponentsPage() {
             <div className="flex flex-wrap items-center gap-4">
               <Button title="Small" size="small" />
               <Button title="Large" size="large" />
-              <Button title="With Icon" prefixIcon="siderProfile" />
-              <Button variant="primary" icon="siderSettings" />
+              <Button title="With Icon" prefixIcon="User" />
+              <Button variant="primary" icon="Settings" />
+
               <Button title="Disabled" disabled />
             </div>
           </div>
@@ -78,21 +79,23 @@ export default function ComponentsPage() {
               type="text"
               label="Default Input"
               placeholder="Enter text..."
-              prefixIcon="searchNormal"
+              prefixIcon="Search"
+
             />
             <Input
               type="password"
               label="Password Input"
               placeholder="Enter password..."
-              suffixIcon="authEye"
+              suffixIcon="Eye"
+
             />
             <Input
-              type="text"
+              type="number"
               label="Number Input"
               placeholder="0"
             />
             <Input
-              type="text"
+              type="date"
               label="Date Input"
             />
           </div>
@@ -108,7 +111,7 @@ export default function ComponentsPage() {
             />
             <div className="space-y-2">
               <Text variant="P14" className="font-medium">Rate Input</Text>
-              <Input type="rate" defaultValue={3.5} />
+              <Input type="number" defaultValue={3.5} />
             </div>
             <Input
               type="text"
@@ -132,10 +135,16 @@ export default function ComponentsPage() {
           </div>
           <div className="flex items-center gap-4">
             <Text variant="P14">Icons:</Text>
-            <Icon name="doneAll" size={24} className="text-green-500" />
-            <Icon name="warning" size={24} className="text-amber-500" />
-            <Icon name="close" size={24} className="text-red-500" />
-            <Icon name="documentText" size={24} className="text-blue-500" />
+            <Icon name="CheckCheck" size={24} className="text-green-500" />
+            <Icon name="ArrowDownUp" size={24} className="text-amber-500" />
+            <Icon name="X" size={24} className="text-red-500" />
+            <Icon name="FileText" size={24} className="text-blue-500" />
+            <Icon name="Search" size={24} />
+            <Icon name="Eye" size={24} />
+            <Icon name="ChevronDown" size={24} />
+            <Icon name="Settings" size={24} />
+            <Icon name="User" size={24} />
+
           </div>
         </div>
       </section>

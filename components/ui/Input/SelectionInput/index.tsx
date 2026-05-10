@@ -6,6 +6,7 @@ import { useMemo, useRef, ChangeEvent } from "react";
 import debounce from "@/utils/debounce";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/utils/CN";
+import { Text } from "../../Text";
 
 /**
  * ShadCN-style Select (dropdown) input.
@@ -20,6 +21,7 @@ export function SelectionInput({
   placeholder,
   i18nPlaceholder,
   errorMsg,
+  label,
   prefixIcon,
   prefixIconSize,
   suffixIcon,
@@ -71,6 +73,7 @@ export function SelectionInput({
       )}
 
       {/* Wrapper for prefix icon + select + suffix icon */}
+      {label && <Text variant="P1">{label}</Text>}
       <div className="relative flex items-center">
         {prefixIcon && (
           <div className="pointer-events-none absolute left-3 flex items-center text-zinc-500">
@@ -116,8 +119,9 @@ export function SelectionInput({
           {suffixIcon ? (
             <Icon name={suffixIcon} size={suffixIconSize ?? (size === "small" ? 14 : 18)} />
           ) : (
-            <Icon name="inputsDown" size={size === "small" ? 14 : 18} />
+            <Icon name="ChevronDown" size={size === "small" ? 14 : 18} />
           )}
+
         </div>
       </div>
 

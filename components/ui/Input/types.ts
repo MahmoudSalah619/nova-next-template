@@ -3,7 +3,7 @@ import { SelectionInputAtomProps } from "./SelectionInput/types";
 import { DatePickerInputProps } from "./DatePickerInput/types";
 // import type { InputRef as AntdInputRef } from "antd";
 import { RateInputProps } from "./RateInput/types";
-import iconList from "../Icon/list";
+import { IconName } from "../Icon/types";
 
 export type InputType =
   | "text"
@@ -26,11 +26,11 @@ export type Placeholder =
   | { placeholder?: never; i18nPlaceholder?: TranslationKeyEnum };
 
 export type PrefixIcon =
-  | { prefixIcon: keyof typeof iconList; prefixIconSize?: number }
+  | { prefixIcon: IconName; prefixIconSize?: number }
   | { prefixIcon?: never; prefixIconSize?: never };
 
 export type SuffixIcon =
-  | { suffixIcon: keyof typeof iconList; suffixIconSize?: number }
+  | { suffixIcon: IconName; suffixIconSize?: number }
   | { suffixIcon?: never; suffixIconSize?: never };
 
 type InputRefMap = {
@@ -70,7 +70,7 @@ export type SharedInputProps = BaseInputProps &
 
 export type GeneralInputProps = SharedInputProps &
   Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "type" | "value" | "onChange"> & {
-    type?: Extract<InputType, "text" | "password" | "email" | "url" | "search" | "tel" | "rate">;
+    type?: Extract<InputType, "text" | "password" | "email" | "url" | "search" | "tel" | "number" | "otp" | "date" | "phone">;
   };
 
 

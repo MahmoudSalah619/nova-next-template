@@ -1,12 +1,12 @@
-import iconList from "./list";
-import COLORS from "@/constants/COLORS";
+import { icons } from "lucide-react";
+
+export type IconName = keyof typeof icons;
 
 export interface IconProps {
-  name: keyof typeof iconList;
-  color?: keyof typeof COLORS;
+  name: IconName;
+  color?: string;
   size?: number;
-  width?: number;
-  height?: number;
+  strokeWidth?: number;
   className?: string;
   onClick?: () => void;
 }
