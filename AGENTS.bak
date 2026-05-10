@@ -35,5 +35,5 @@ Next.js 16.2.6 app using App Router, TypeScript, Tailwind v4, Redux Toolkit, Rea
 - Main packages: `next@16.2.6`, `react@19.2.4`, `react-dom@19.2.4`, `tailwindcss@4`, `reduxjs/toolkit@2.11.2`
 - Styling: Tailwind v4 (use `tw` shortcode), SCSS modules for components, global SCSS in `styles/global.scss`
 - Data fetching: RTK Query with `createApi` and `baseQuery`
-- Forms: React Hook Form`
+- Forms: React Hook Form
 - Routing: App Router (`app/` directory)

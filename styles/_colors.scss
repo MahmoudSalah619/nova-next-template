@@ -1,0 +1,27 @@
+// Define the project's global colors
+$colors: (
+  "primary": #6e6bcf,
+  "secondary": #6c757d,
+  "error": #ef4444,
+  "warning": #f59e0b,
+  "info": #3b82f6,
+  "success": #10b981
+);
+
+// Map global CSS variables to the document root
+:root {
+  @each $name, $hex in $colors {
+    --color-#{$name}-500: #{$hex};
+  }
+}
+
+// Generate utility color classes used by components (e.g. Text component)
+@each $name, $hex in $colors {
+  .#{$name}Color {
+    color: var(--color-#{$name}-500);
+  }
+  
+  .bg-#{$name}Color {
+    background-color: var(--color-#{$name}-500);
+  }
+}

@@ -1,0 +1,85 @@
+@use "/styles/all" as *;
+
+.phoneInputContainer {
+  display: flex;
+  flex-direction: column;
+  :focus-within {
+    border: 2px solid $primary400;
+  }
+}
+
+.labelContainer {
+  display: flex;
+  gap: 4px;
+}
+
+.label {
+  margin-bottom: 8px;
+}
+
+.phoneInput {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 1px solid $neutral300;
+  padding-inline-start: 9px;
+  border-radius: 8px;
+  gap: 8px;
+
+  &:focus-within {
+    border: 2px solid $primary400;
+  }
+
+  :global {
+    .PhoneInputCountry {
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    .PhoneInputCountrySelect {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      width: fit-content;
+      color: $text100;
+      @include P3();
+      option {
+        color: $text50;
+        @include P3();
+      }
+    }
+
+    .PhoneInputCountryIconImg {
+      width: 30px;
+      height: 22px;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+    .PhoneInputInput {
+      width: fit-content;
+      height: fit-content;
+      flex: 1;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: $text50;
+      @include P3();
+    }
+  }
+}
+
+.phoneInputError {
+  border-color: $danger700;
+}
+
+.disabled {
+  background-color: $neutral200;
+}
+
+.errorMsg {
+  display: flex;
+  gap: 4px;
+  padding-block: 4px;
+  padding-inline-start: 4px;
+
+  margin-top: 4px;
+}

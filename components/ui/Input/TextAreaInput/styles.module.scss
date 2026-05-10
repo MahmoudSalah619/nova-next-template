@@ -1,0 +1,19 @@
+@use "/styles/all" as *;
+
+// .large {
+//   border-width: 2px;
+// }
+
+.textArea {
+  min-height: 76px !important;
+}
+
+.textAreaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.maxLengthText {
+  text-align: end;
+}

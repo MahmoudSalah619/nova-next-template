@@ -1,0 +1,32 @@
+@use "sass:math";
+
+// Baseline viewport widths for responsive calculations
+$desktop-design-width: 1440;
+$mobile-design-width: 390;
+
+/// Convert pixel to vw based on desktop design width
+@function vw-desktop($px) {
+  @return math.div($px, $desktop-design-width) * 100vw;
+}
+
+/// Convert pixel to vw based on mobile design width
+@function vw-mobile($px) {
+  @return math.div($px, $mobile-design-width) * 100vw;
+}
+
+/// Responsive property mixin
+/// Example: @include responsive-prop(font-size, 24, 16);
+@mixin responsive-prop($property, $desktop-px, $mobile-px: null) {
+  #{$property}: vw-desktop($desktop-px);
+  
+  @if $mobile-px {
+    @media (max-width: 768px) {
+      #{$property}: vw-mobile($mobile-px);
+    }
+  }
+}
+
+/// Shorthand specifically for font-size
+@mixin font-vw($desktop-px, $mobile-px: null) {
+  @include responsive-prop(font-size, $desktop-px, $mobile-px);
+}

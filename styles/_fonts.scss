@@ -1,0 +1,18 @@
+// Global Font Settings
+
+$font-primary: var(--font-sans), Arial, Helvetica, sans-serif;
+$font-secondary: var(--font-mono), monospace;
+
+:root {
+  --font-family-primary: #{$font-primary};
+  --font-family-secondary: #{$font-secondary};
+}
+
+// Optionally, generate some font-family utility classes if needed
+.font-primary {
+  font-family: var(--font-family-primary);
+}
+
+.font-secondary {
+  font-family: var(--font-family-secondary);
+}

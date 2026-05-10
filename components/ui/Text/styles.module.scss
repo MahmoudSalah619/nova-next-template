@@ -1,0 +1,121 @@
+@use "/styles/all" as *;
+
+.text {
+  word-break: break-word;
+}
+
+.H1 {
+  @include H1;
+}
+
+.H2 {
+  @include H2;
+}
+
+.H3 {
+  @include H3;
+}
+
+.H4 {
+  @include H4;
+}
+
+.H5 {
+  @include H5;
+}
+
+.H6 {
+  @include H6;
+}
+
+.H7 {
+  @include H7;
+}
+
+.P1 {
+  @include P1;
+}
+
+.P2 {
+  @include P2;
+}
+
+.P3 {
+  @include P3;
+}
+
+.P4 {
+  @include P4;
+}
+
+.P5 {
+  @include P5;
+}
+
+.P6 {
+  @include P6;
+}
+
+.P7 {
+  @include P7;
+}
+
+.P8 {
+  @include P8;
+}
+
+.P9 {
+  @include P9;
+}
+
+.P10 {
+  @include P10;
+}
+
+.P11 {
+  @include P11;
+}
+
+.P12 {
+  @include P12;
+}
+
+.P13 {
+  @include P13;
+}
+
+.P14 {
+  @include P14;
+}
+
+.P15 {
+  @include P15;
+}
+
+.B1 {
+  @include B1;
+}
+
+.B2 {
+  @include B2;
+}
+
+.B3 {
+  @include B3;
+}
+
+.L1 {
+  @include L1;
+}
+
+.L2 {
+  @include L2;
+}
+
+.L3 {
+  @include L3;
+}
+
+.L4 {
+  @include L4;
+}

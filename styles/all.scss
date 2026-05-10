@@ -1,0 +1,6 @@
+// Entry point for all global styles and mixins
+
+// Forward variables and mixins so that components can `@use` them
+@forward "mixins";
+@forward "colors";
+@forward "fonts";
