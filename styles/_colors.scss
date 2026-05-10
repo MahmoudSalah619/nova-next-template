@@ -1,12 +1,42 @@
-// Define the project's global colors
+// Primary palette
+$primary400: #8c89df;
+$primary500: #6e6bcf;
+$primary700: #4a47a3;
+
+// Neutral palette
+$neutral0: #ffffff;
+$neutral50: #fafafa;
+$neutral100: #f4f4f5;
+$neutral200: #e4e4e7;
+$neutral300: #d4d4d8;
+$neutral400: #a1a1aa;
+$neutral500: #71717a;
+$neutral600: #52525b;
+$neutral700: #3f3f46;
+$neutral800: #27272a;
+$neutral900: #18181b;
+
+// Text palette
+$text50: #09090b;
+$text100: #18181b;
+$text200: #71717a;
+$text300: #ffffff;
+
+// Danger palette
+$danger700: #b91c1c;
+$danger800: #991b1b;
+$danger900: #7f1d1d;
+
 $colors: (
-  "primary": #6e6bcf,
-  "secondary": #6c757d,
-  "error": #ef4444,
+  "primary": $primary500,
+  "secondary": $neutral500,
+  "error": $danger700,
   "warning": #f59e0b,
   "info": #3b82f6,
   "success": #10b981
 );
+
+
 
 // Map global CSS variables to the document root
 :root {

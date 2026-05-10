@@ -1,10 +1,12 @@
 import { HTMLAttributes, RefObject } from "react";
-import { GeneralInputProps, InputRef } from "../types";
+import { SharedInputProps, InputRef } from "../types";
 
-export type RateInputProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange"> &
-  GeneralInputProps & {
+export type RateInputProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "value"> &
+  SharedInputProps & {
+
     ref?: RefObject<InputRef<"rate">>;
-    type: "rate";
+    type?: "rate";
+
     count?: number;
     value?: number;
     defaultValue?: number;

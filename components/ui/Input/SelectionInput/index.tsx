@@ -4,7 +4,7 @@ import { SelectionInputAtomProps } from "./types";
 import useAutoCompleteTranslation from "@/hooks/useAutoCompleteTranslation";
 import { useMemo, useRef, ChangeEvent } from "react";
 import debounce from "@/utils/debounce";
-import Icon from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/utils/CN";
 
 /**
@@ -14,7 +14,7 @@ import { cn } from "@/utils/CN";
  * Note: `mode="multiple"` maps to the native `multiple` attribute.
  * `onSearch` is wired to a search <input> rendered above the select when provided.
  */
-export default function SelectionInput({
+export function SelectionInput({
   ref,
   options,
   placeholder,

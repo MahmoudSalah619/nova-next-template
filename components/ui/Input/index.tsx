@@ -1,13 +1,14 @@
 "use client";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import Icon from "@/components/ui/Icon";
+import { Icon } from "@/components/ui/Icon";
+import { Text } from "@/components/ui/Text";
 import debounce from "@/utils/debounce";
-import InputProps from "./types";
 import { cn } from "@/utils/CN";
+import { GeneralInputProps, InputProps } from "./types";
 
 /**
- * Shadcn-style base input component using Tailwind CSS.
+ * Base native input element with consistent styling.
  */
 const BaseInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
   ({ className, type, ...props }, ref) => {
@@ -27,10 +28,9 @@ const BaseInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<H
 BaseInput.displayName = "BaseInput";
 
 /**
- * Unified Input component following Shadcn/ui patterns.
- * Replaces Ant Design dependency with native Tailwind-styled elements.
+ * The default text-based input implementation.
  */
-export function Input({
+function DefaultInput({
   type = "text",
   label,
   i18nLabel,
@@ -48,12 +48,11 @@ export function Input({
   suffixIcon,
   suffixIconSize,
   ...props
-}: InputProps) {
+}: GeneralInputProps) {
   const { t } = useTranslation();
 
-  // Handle debounced onChange if delay is provided
   const handleOnChange = React.useMemo(() => {
-    if (debounceDelay > 0) {
+    if (debounceDelay > 0 && onChange) {
       return debounce(onChange as (...e: any[]) => void, debounceDelay);
     }
     return onChange;
@@ -61,16 +60,15 @@ export function Input({
 
   return (
     <div className={cn("flex flex-col gap-1.5", fullWidth && "w-full")}>
-      {/* Label section */}
       {(!!label || !!i18nLabel) && (
         <label className="text-sm font-medium leading-none text-zinc-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-zinc-50">
+          {/* @ts-ignore  */}
           {label ?? t(i18nLabel ?? "")}
           {required && <span className="text-red-500"> *</span>}
         </label>
       )}
 
       <div className="relative flex items-center">
-        {/* Prefix Icon */}
         {prefixIcon && (
           <div className="absolute left-3 flex items-center justify-center text-zinc-500 pointer-events-none">
             <Icon name={prefixIcon} size={prefixIconSize ?? (size === "small" ? 14 : 18)} />
@@ -78,9 +76,10 @@ export function Input({
         )}
 
         <BaseInput
-          type={type}
+          type={type as any}
+          // @ts-ignore
           placeholder={placeholder ?? t(i18nPlaceholder ?? "")}
-          onChange={handleOnChange}
+          onChange={handleOnChange as any}
           className={cn(
             size === "small" ? "h-9" : "h-11",
             prefixIcon && "pl-10",
@@ -91,7 +90,6 @@ export function Input({
           {...props}
         />
 
-        {/* Suffix Icon */}
         {suffixIcon && (
           <div className="absolute right-3 flex items-center justify-center text-zinc-500 pointer-events-none">
             <Icon name={suffixIcon} size={suffixIconSize ?? (size === "small" ? 14 : 18)} />
@@ -99,7 +97,6 @@ export function Input({
         )}
       </div>
 
-      {/* Error Message */}
       {errorMsg && (
         <p className="text-[0.8rem] font-medium text-red-500">
           {errorMsg}
@@ -108,3 +105,4 @@ export function Input({
     </div>
   );
 }
+export { DefaultInput as Input }

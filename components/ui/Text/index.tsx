@@ -2,8 +2,9 @@
 import { TextProps } from "./types";
 import styles from "./styles.module.scss";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/utils/CN";
 
-export default function Text({
+export function Text({
   children,
   text,
   skipTranslate,
@@ -13,12 +14,14 @@ export default function Text({
   ...props
 }: TextProps) {
   const { t } = useTranslation();
+  const normalizedVariant = (variant.length <= 3 && variant.startsWith("h")) ? variant.toUpperCase() : variant;
+
   return (
     <p
       {...props}
-      className={`${styles[variant]} ${className} ${styles.text} ${color}Color`}
+      className={cn(styles[normalizedVariant], className, styles.text, color && `${color}Color`)}
     >
-      {skipTranslate ? text ?? children : t(text ?? "")}
+      {skipTranslate ? (text || children) : t(text || "") || children}
     </p>
   );
 }

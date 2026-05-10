@@ -6,7 +6,7 @@ import { cn } from "@/utils/CN";
  * Replaces the Ant Design DatePicker (rc-picker) with a native <input type="date"> /
  * <input type="datetime-local"> styled with Tailwind.
  */
-export default function DatePickerInput({
+export function DatePickerInput({
   ref,
   format,
   placeholder,

@@ -1,5 +1,5 @@
 import { Ref, SelectHTMLAttributes } from "react";
-import { GeneralInputProps, InputRef } from "../types";
+import { SharedInputProps, InputRef } from "../types";
 import { TranslationKeyEnum } from "@/types/TranslationKeyEnum";
 
 export type OptionType = {
@@ -12,13 +12,18 @@ export type OptionType = {
 
 export type SelectionInputAtomProps = Omit<
   SelectHTMLAttributes<HTMLSelectElement>,
-  "size" | "prefix"
+  "size" | "prefix" | "onChange" | "value"
 > &
-  GeneralInputProps & {
+  SharedInputProps & {
+
     ref?: Ref<InputRef<"dropdown">>;
-    type: "dropdown";
+    type?: "dropdown";
     mode?: "multiple" | "tags" | undefined;
+
     options?: OptionType[];
     errorMsg?: string;
     onSearch?: (value: string) => void;
+    onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+    value?: string | string[];
   };
+

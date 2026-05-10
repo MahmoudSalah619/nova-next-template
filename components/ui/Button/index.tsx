@@ -1,10 +1,11 @@
 import useAutoCompleteTranslation from "@/hooks/useAutoCompleteTranslation";
-import Text from "../Text";
+import { Text } from "../Text";
 import styles from "./styles.module.scss";
 import { CustomButtonProps } from "./types";
-import Icon from "../Icon";
+import { Icon } from "../Icon";
+import { cn } from "@/utils/CN";
 
-function Button({
+export function Button({
   title,
   variant = "primary",
   size = "large",
@@ -31,13 +32,15 @@ function Button({
     <button
       {...otherProps}
       onClick={onClick}
-      className={`${styles.btn} 
-      ${isFullWidth && styles.isFullWidth} 
-      ${styles[variant]} 
-      ${styles[size]}
-      ${iconButtonType && styles[iconButtonType]}
-      ${icon && styles.iconButton}
-      ${className}`}
+      className={cn(
+        styles.btn,
+        isFullWidth && styles.isFullWidth,
+        styles[variant],
+        styles[size],
+        iconButtonType && styles[iconButtonType],
+        icon && styles.iconButton,
+        className
+      )}
       disabled={disabled}
     >
       {icon ? (
@@ -68,4 +71,3 @@ function Button({
   );
 }
 
-export default Button;

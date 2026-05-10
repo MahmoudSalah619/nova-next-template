@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Property } from "csstype";
 
-export default function Image({
+export function Image({
   width,
   height,
   alt,

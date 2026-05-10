@@ -1,10 +1,7 @@
 import { TranslationKeyEnum } from "@/types/TranslationKeyEnum";
 import { SelectionInputAtomProps } from "./SelectionInput/types";
 import { DatePickerInputProps } from "./DatePickerInput/types";
-import CustomPhoneInputProps from "./CustomPhoneInput/types";
-import { NumberInputProps } from "./NumberInput/types";
 // import type { InputRef as AntdInputRef } from "antd";
-import { TextAreaProps } from "./TextAreaInput/types";
 import { RateInputProps } from "./RateInput/types";
 import iconList from "../Icon/list";
 
@@ -53,7 +50,6 @@ export type InputRef<T extends InputType> = T extends keyof InputRefMap
   : never;
 
 export interface BaseInputProps {
-  type: InputType;
   name?: string;
   size?: InputSize;
   required?: boolean;
@@ -61,21 +57,28 @@ export interface BaseInputProps {
   errorMsg?: string;
   debounceDelay?: number;
   fullWidth?: boolean;
+  className?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export type GeneralInputProps = BaseInputProps &
+export type SharedInputProps = BaseInputProps &
   Label &
   Placeholder &
   PrefixIcon &
   SuffixIcon;
 
-type InputProps =
+export type GeneralInputProps = SharedInputProps &
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, "size" | "type" | "value" | "onChange"> & {
+    type?: Extract<InputType, "text" | "password" | "email" | "url" | "search" | "tel" | "rate">;
+  };
+
+
+export type InputProps =
   | GeneralInputProps
-  | NumberInputProps
   | DatePickerInputProps
-  | CustomPhoneInputProps
   | SelectionInputAtomProps
-  | TextAreaProps
   | RateInputProps;
 
-export default InputProps;
+
+

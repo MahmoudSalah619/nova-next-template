@@ -1,13 +1,15 @@
 import { InputHTMLAttributes, Ref } from "react";
-import { GeneralInputProps, InputRef } from "../types";
+import { SharedInputProps, InputRef } from "../types";
 
 export type DatePickerInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  "name" | "required" | "type" | "size" | "prefix"
+  "name" | "required" | "type" | "size" | "prefix" | "onChange" | "value"
 > &
-  Omit<GeneralInputProps, "suffixIcon"> & {
+  Omit<SharedInputProps, "suffixIcon"> & {
+
     ref?: Ref<InputRef<"date">>;
-    type: "date";
+    type?: "date";
+
     /** Displayed format string (cosmetic only — native input uses YYYY-MM-DD internally) */
     format?: string;
     showTime?: boolean;

@@ -25,7 +25,7 @@ const STAR_FILLED = (
  * ShadCN-style star rating input.
  * Replaces antd Rate with a fully accessible, styled native implementation.
  */
-export default function RateInput({
+export function RateInput({
   ref,
   count = 5,
   value,
