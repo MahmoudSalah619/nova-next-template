@@ -8,6 +8,8 @@ This project follows a feature-driven, modular structure to ensure maintainabili
 
 ```text
 nova-next-template/
+├── .agent/               # Agent-specific workflows and rules (e.g., speckit)
+├── .claude/              # Custom AI skills and instructions for Claude
 ├── app/                  # Next.js App Router (Pages, Layouts, API Routes)
 │   ├── (auth)/           # Authentication layout group
 │   ├── api/              # Backend API routes
@@ -36,6 +38,8 @@ nova-next-template/
 
 ### Key Directories Explained:
 
+- **`.agent/`**: Contains agent-specific workflows (such as Speckit planning and task execution steps) and custom rule definitions.
+- **`.claude/`**: Stores customized skills and guidelines that direct Claude's behavior and patterns across different aspects of the codebase.
 - **`app/`**: Contains the Next.js routing system. It's strictly used for routing, page layouts, and backend API routes. Heavy logic is abstracted away into features or services.
 - **`components/ui/`**: Houses our strictly visual, stateless components inspired by ShadCN and tailored to our SCSS/Tailwind design system.
 - **`styles/`**: Centralized SCSS stylesheets that manage our global colors, typography, and responsive mixins (like our `vw` calculation logic).
