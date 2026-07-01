@@ -1,5 +1,5 @@
-import store from "reducers";
-import { logout } from "reducers/authReducer";
+import store from "@/redux";
+import { logout } from "@/redux/authReducer";
 
 export default function logoutHandler() {
   localStorage.removeItem("token");

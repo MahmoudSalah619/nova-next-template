@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "@/src/apis/types/auth";
+import { User } from "@/api/types/auth";
 
 interface IAuthState {
   token?: string | null;
   userData?: User | null;
 }
 const initialState: IAuthState = {
-  token: localStorage.getItem("token") || null,
+  token: null,
   userData: null,
 };
 

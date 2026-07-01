@@ -13,10 +13,12 @@ export type TextVariant = "H1" | "H2" | "H3" | "H4" | "H5" | "H6" | "H7"
   | "L1" | "L2" | "L3" | "L4"
   | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span";
 
+export type TextTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div" | "label" | "strong" | "em";
+
 type BaseProps = {
   variant: TextVariant;
+  tag?: TextTag;
   color?: keyof typeof Colors;
-
   skipTranslate?: boolean;
 };
 

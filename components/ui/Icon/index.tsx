@@ -1,5 +1,6 @@
 import { icons, HelpCircle } from "lucide-react";
 import { IconProps } from "./types";
+import { customIcons } from "./iconList";
 import { cn } from "@/utils/CN";
 
 export function Icon({
@@ -10,8 +11,19 @@ export function Icon({
   className,
   onClick,
 }: IconProps) {
-  const LucideIcon = icons[name] || HelpCircle;
+  if (name in customIcons) {
+    const CustomIcon = customIcons[name as keyof typeof customIcons];
+    return (
+      <CustomIcon
+        size={size}
+        color={color}
+        className={cn("shrink-0", className)}
+        onClick={onClick}
+      />
+    );
+  }
 
+  const LucideIcon = icons[name as keyof typeof icons] || HelpCircle;
   return (
     <LucideIcon
       color={color}
@@ -22,4 +34,3 @@ export function Icon({
     />
   );
 }
-

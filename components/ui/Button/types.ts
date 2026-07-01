@@ -12,7 +12,7 @@ export interface CustomButtonProps
   icon?: IconName;
   iconSize?: number;
   iconButtonType?: "square" | "round";
-  title?: TranslationKeyEnum;
+  title?: TranslationKeyEnum | string;
   size?: "small" | "large";
   variant?: ButtonVariant;
   isFullWidth?: boolean;

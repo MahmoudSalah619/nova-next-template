@@ -2,7 +2,10 @@ import { configureStore } from "@reduxjs/toolkit";
 // import rtkQueryErrorLogger from "apis/middlewares/errorMiddleware";
 import appReducer from "./appReducer";
 import authReducer from "./authReducer";
-import api from "@/app/api";
+import api from "@/api";
+
+const token =
+  typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
 const store = configureStore({
   reducer: {
@@ -10,9 +13,11 @@ const store = configureStore({
     auth: authReducer,
     app: appReducer,
   },
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat(api.middleware),
-  // .concat(rtkQueryErrorLogger),
+  preloadedState: {
+    auth: { token, userData: null },
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 export default store;

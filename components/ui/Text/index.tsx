@@ -1,7 +1,9 @@
 "use client";
+import React from "react";
+import { useParams } from "next/navigation";
 import { TextProps } from "./types";
 import styles from "./styles.module.scss";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "@/app/i18n/client";
 import { cn } from "@/utils/CN";
 
 export function Text({
@@ -11,17 +13,19 @@ export function Text({
   className,
   color,
   variant,
+  tag: Tag = "p",
   ...props
 }: TextProps) {
-  const { t } = useTranslation();
+  const { lng } = useParams<{ lng: string }>();
+  const { t } = useTranslation(lng, "common");
   const normalizedVariant = (variant.length <= 3 && variant.startsWith("h")) ? variant.toUpperCase() : variant;
 
   return (
-    <p
-      {...props}
+    <Tag
+      {...(props as React.HTMLAttributes<HTMLElement>)}
       className={cn(styles[normalizedVariant], className, styles.text, color && `${color}Color`)}
     >
       {skipTranslate ? (text || children) : t(text || "") || children}
-    </p>
+    </Tag>
   );
 }

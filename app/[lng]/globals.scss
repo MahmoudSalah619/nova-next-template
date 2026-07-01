@@ -1,0 +1,49 @@
+@use "@/styles/all" as *;
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  // Design-system fonts — override with next/font/local variables once font files are added
+  --font-helvetica-neue-bold: 'HelveticaNeue-Bold', Helvetica, Arial, sans-serif;
+  --font-roboto-regular: 'Roboto-Regular', Roboto, sans-serif;
+  --font-roboto-medium: 'Roboto-Medium', Roboto, sans-serif;
+  --font-roboto-semiBold: 'Roboto-SemiBold', Roboto, sans-serif;
+  --font-roboto-bold: 'Roboto-Bold', Roboto, sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Global Colors */
+  --color-primary-500: var(--color-primary-500);
+  --color-secondary-500: var(--color-secondary-500);
+  --color-error-500: var(--color-error-500);
+  --color-warning-500: var(--color-warning-500);
+  --color-info-500: var(--color-info-500);
+  --color-success-500: var(--color-success-500);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: $font-roboto-reg;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

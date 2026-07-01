@@ -1,0 +1,9 @@
+@use "@/styles/all" as *;
+
+.wrapper {
+  @include container;
+  @include flex-col;
+  gap: min(vw(80px), 80px);
+  padding-top: min(vw(40px), 40px);
+  padding-bottom: min(vw(80px), 80px);
+}

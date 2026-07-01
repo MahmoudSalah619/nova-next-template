@@ -7,6 +7,7 @@ import { IconName } from "../Icon/types";
 
 export type InputType =
   | "text"
+  | "email"
   | "number"
   | "textarea"
   | "password"
@@ -35,6 +36,7 @@ export type SuffixIcon =
 
 type InputRefMap = {
   text: HTMLInputElement | null;
+  email: HTMLInputElement | null;
   password: HTMLInputElement | null;
   textarea: HTMLTextAreaElement | null;
 

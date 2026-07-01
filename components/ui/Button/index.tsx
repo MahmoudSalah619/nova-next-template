@@ -1,4 +1,7 @@
-import useAutoCompleteTranslation from "@/hooks/useAutoCompleteTranslation";
+"use client";
+
+import { useParams } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 import { Text } from "../Text";
 import styles from "./styles.module.scss";
 import { CustomButtonProps } from "./types";
@@ -25,8 +28,10 @@ export function Button({
   children,
   ...otherProps
 }: CustomButtonProps) {
-  const { t } = useAutoCompleteTranslation();
+  const { lng } = useParams<{ lng: string }>();
+  const { t } = useTranslation(lng, "common");
   const iconSize = size === "large" ? 16 : 12;
+  const textSize = size === "large" ? "P11" : "P9";
 
   return (
     <button
@@ -39,7 +44,7 @@ export function Button({
         styles[size],
         iconButtonType && styles[iconButtonType],
         icon && styles.iconButton,
-        className
+        className,
       )}
       disabled={disabled}
     >
@@ -52,10 +57,7 @@ export function Button({
           )}
 
           {title && (
-            <Text
-              variant={fontVariant ?? (size === "large" ? "B1" : "B2")}
-              color={fontColor}
-            >
+            <Text variant={fontVariant ?? textSize} color={fontColor}>
               {t(title)}
             </Text>
           )}
@@ -70,4 +72,3 @@ export function Button({
     </button>
   );
 }
-

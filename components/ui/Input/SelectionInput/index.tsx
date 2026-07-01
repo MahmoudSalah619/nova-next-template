@@ -1,7 +1,8 @@
 "use client";
 import * as React from "react";
 import { SelectionInputAtomProps } from "./types";
-import useAutoCompleteTranslation from "@/hooks/useAutoCompleteTranslation";
+import { useTranslation } from "@/app/i18n/client";
+import { useParams } from "next/navigation";
 import { useMemo, useRef, ChangeEvent } from "react";
 import debounce from "@/utils/debounce";
 import { Icon } from "@/components/ui/Icon";
@@ -34,8 +35,9 @@ export function SelectionInput({
   value,
   ...props
 }: SelectionInputAtomProps) {
-  const { t } = useAutoCompleteTranslation();
-  const resolvedPlaceholder = placeholder ?? t(i18nPlaceholder ?? ("SELECT" as any));
+  const { lng } = useParams<{ lng: string }>();
+  const { t } = useTranslation(lng, "common");
+  const resolvedPlaceholder = placeholder ?? t(i18nPlaceholder ?? ("SELECT" as string));
 
   const debouncedSearchHandler = useMemo(
     () => debounce((e: string) => onSearch?.(e), 500),
@@ -48,7 +50,7 @@ export function SelectionInput({
       options?.map((option) => ({
         ...option,
         value: option.value?.toString() ?? "",
-        label: option.i18Label ? t(option.i18Label as any) : option.label,
+        label: option.i18Label ? t(option.i18Label as string) : option.label,
       })) ?? [],
     [options, t]
   );

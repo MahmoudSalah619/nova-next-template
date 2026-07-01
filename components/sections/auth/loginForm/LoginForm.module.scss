@@ -1,0 +1,100 @@
+@use "@/styles/all" as *;
+
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: $neutral0;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 8px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.accent {
+  height: 4px;
+  background: $primary500;
+}
+
+.body {
+  padding: 36px 40px 40px;
+
+  @include mobile {
+    padding: 28px 24px 32px;
+  }
+}
+
+.brand {
+  @include flex-center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.brandMark {
+  @include size(20px);
+  border-radius: 5px;
+  background: $primary500;
+  flex-shrink: 0;
+}
+
+.heading {
+  margin-bottom: 4px;
+}
+
+.subtext {
+  margin-bottom: 28px;
+  color: $neutral900;
+}
+
+.divider {
+  height: 1px;
+  background: $neutral200;
+  margin: 28px 0;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.passwordRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.forgotLink {
+  align-self: flex-end;
+  text-decoration: none;
+  color: $primary500;
+  @include transition(opacity, 0.15s);
+
+  @include hover {
+    opacity: 0.75;
+  }
+}
+
+.submit {
+  margin-top: 28px;
+}
+
+.footer {
+  @include flex-center;
+  gap: 6px;
+  padding-top: 20px;
+  border-top: 1px solid $neutral200;
+  margin-top: 24px;
+}
+
+.signupLink {
+  text-decoration: none;
+  color: $primary500;
+  font-family: $font-roboto-semiBold;
+  @include transition(opacity, 0.15s);
+
+  @include hover {
+    opacity: 0.75;
+  }
+}

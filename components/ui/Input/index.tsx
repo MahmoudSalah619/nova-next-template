@@ -1,35 +1,14 @@
 "use client";
 import * as React from "react";
-import { useTranslation } from "react-i18next";
+import { useParams } from "next/navigation";
+import { useTranslation } from "@/app/i18n/client";
 import { Icon } from "@/components/ui/Icon";
 import { Text } from "@/components/ui/Text";
 import debounce from "@/utils/debounce";
 import { cn } from "@/utils/CN";
-import { GeneralInputProps, InputProps } from "./types";
+import styles from "./styles.module.scss";
+import { GeneralInputProps } from "./types";
 
-/**
- * Base native input element with consistent styling.
- */
-const BaseInput = React.forwardRef<HTMLInputElement, React.InputHTMLAttributes<HTMLInputElement>>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        className={cn(
-          "flex w-full rounded-md border border-zinc-200 bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-zinc-950 placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:border-zinc-800 dark:file:text-zinc-50 dark:placeholder:text-zinc-400 dark:focus-visible:ring-zinc-300",
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-BaseInput.displayName = "BaseInput";
-
-/**
- * The default text-based input implementation.
- */
 function DefaultInput({
   type = "text",
   label,
@@ -49,60 +28,77 @@ function DefaultInput({
   suffixIconSize,
   ...props
 }: GeneralInputProps) {
-  const { t } = useTranslation();
+  const { lng } = useParams<{ lng: string }>();
+  const { t } = useTranslation(lng, "common");
+  const [showPassword, setShowPassword] = React.useState(false);
+  const isPassword = type === "password";
 
   const handleOnChange = React.useMemo(() => {
     if (debounceDelay > 0 && onChange) {
-      return debounce(onChange as (...e: any[]) => void, debounceDelay);
+      return debounce(onChange, debounceDelay);
     }
     return onChange;
   }, [onChange, debounceDelay]);
 
+  const resolvedLabel = i18nLabel ? t(i18nLabel) : label;
+  const resolvedType = isPassword ? (showPassword ? "text" : "password") : type;
+  const iconSize = size === "small" ? 16 : 18;
+
   return (
-    <div className={cn("flex flex-col gap-1.5", fullWidth && "w-full")}>
-      {(!!label || !!i18nLabel) && (
-        <label className="text-sm font-medium leading-none text-zinc-900 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-zinc-50">
-          {/* @ts-ignore  */}
-          {label ?? t(i18nLabel ?? "")}
-          {required && <span className="text-red-500"> *</span>}
-        </label>
+    <div className={cn(styles.inputContainer, fullWidth && styles.fullWidth)}>
+      {resolvedLabel && (
+        <Text variant="L1" color="neutral900">
+          {resolvedLabel}
+          {required && <span className={styles.required}> *</span>}
+        </Text>
       )}
 
-      <div className="relative flex items-center">
+      <div className={styles.fieldWrapper}>
         {prefixIcon && (
-          <div className="absolute left-3 flex items-center justify-center text-zinc-500 pointer-events-none">
-            <Icon name={prefixIcon} size={prefixIconSize ?? (size === "small" ? 14 : 18)} />
+          <div className={styles.prefix}>
+            <Icon name={prefixIcon} size={prefixIconSize ?? iconSize} />
           </div>
         )}
 
-        <BaseInput
-          type={type as any}
-          // @ts-ignore
+        <input
+          type={resolvedType}
           placeholder={placeholder ?? t(i18nPlaceholder ?? "")}
-          onChange={handleOnChange as any}
+          onChange={handleOnChange}
           className={cn(
-            size === "small" ? "h-9" : "h-11",
-            prefixIcon && "pl-10",
-            suffixIcon && "pr-10",
-            errorMsg && "border-red-500 focus-visible:ring-red-500",
+            styles.textInput,
+            styles[size],
+            prefixIcon && styles.hasPrefix,
+            (suffixIcon || isPassword) && styles.hasSuffix,
+            errorMsg && styles.error,
             className
           )}
           {...props}
         />
 
-        {suffixIcon && (
-          <div className="absolute right-3 flex items-center justify-center text-zinc-500 pointer-events-none">
-            <Icon name={suffixIcon} size={suffixIconSize ?? (size === "small" ? 14 : 18)} />
+        {isPassword ? (
+          <button
+            type="button"
+            className={styles.passwordToggle}
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => setShowPassword((v) => !v)}
+            tabIndex={-1}
+          >
+            <Icon name={showPassword ? "EyeOff" : "Eye"} size={iconSize} />
+          </button>
+        ) : suffixIcon && (
+          <div className={styles.suffix}>
+            <Icon name={suffixIcon} size={suffixIconSize ?? iconSize} />
           </div>
         )}
       </div>
 
       {errorMsg && (
-        <p className="text-[0.8rem] font-medium text-red-500">
-          {errorMsg}
-        </p>
+        <Text variant="P13" className={styles.errorMsg}>
+          {t(errorMsg)}
+        </Text>
       )}
     </div>
   );
 }
+
 export { DefaultInput as Input }

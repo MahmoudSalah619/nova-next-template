@@ -1,16 +1,24 @@
-// import { useGetUserInfoQuery } from "apis/services/auth";
-// import { RootState } from "@reduxjs/toolkit/query";
+"use client";
+
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "@/reducers";
+import { RootState } from "@/redux";
 
 export default function useGetUserInfo() {
-  const userData = useSelector((state: RootState) => state.auth.userData);
+  const { token, userData } = useSelector((state: RootState) => state.auth);
+  const [mounted, setMounted] = useState(false);
 
-  const userType = userData?.user_type || "seller";
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const userType = userData?.user_type;
+
   return {
-    isAdmin: userType === "admin",
-    isSeller: userType === "seller",
-    role: userType,
-    userInfo: userData,
+    isLoggedIn: mounted && !!token,
+    isAdmin: mounted && userType === "admin",
+    isSeller: mounted && userType === "seller",
+    role: mounted ? (userType ?? null) : null,
+    userInfo: mounted ? (userData ?? null) : null,
   };
 }
