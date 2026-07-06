@@ -1,0 +1,76 @@
+@use "@/styles/all" as *;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid $neutral200;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+}
+
+.inner {
+  @include container;
+  @include flex-between;
+  height: resize(72px, 72px);
+}
+
+.logo {
+  @include flex-center;
+  gap: min(vw(8px), 8px);
+  text-decoration: none;
+}
+
+.logoMark {
+  @include size(28px);
+  background: $primary500;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.nav {
+  @include flex-center;
+  gap: min(vw(36px), 36px);
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $primary500;
+    border-radius: 2px;
+    @include transition(width, 0.2s, ease);
+  }
+
+  @include hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+.active {
+  &::after {
+    width: 100%;
+  }
+}
+
+.actions {
+  @include flex-center;
+  gap: min(vw(12px), 12px);
+}

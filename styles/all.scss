@@ -1,0 +1,8 @@
+// Entry point — forward all design-system members so component files can
+// @use "@/styles/all" as * and get variables, functions, and mixins.
+@forward "@/styles/variables";
+@forward "@/styles/colors";
+@forward "@/styles/functions";
+@forward "@/styles/responsive";
+@forward "@/styles/mixins";
+@forward "@/styles/typography";

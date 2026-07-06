@@ -1,0 +1,58 @@
+@use "@/styles/functions" as *;
+
+$base-height: 900;
+$base-width: 1440;
+$max-additional-size: 5;
+
+// for responsive widths, heights, paddings, margins
+// padding: vw(20px)
+@function vw($size) {
+  @return (strip-unit($size) / $base-width) * 100vw;
+}
+
+// Use this if the design of the page will be fullpage
+// padding: vh(20px)
+@function vh($size) {
+  @return (strip-unit($size) / $base-height) * 100vh;
+}
+
+@function resize($size, $maxSize: 100px) {
+  $finalSize: clamp(#{vw($size)}, 0px, #{vw($maxSize)});
+
+  $finalSize: min($finalSize, $maxSize);
+  @return $finalSize;
+}
+
+
+@mixin font-size($size, $maxSize: 100px) {
+  font-size: resize($size, $maxSize);
+
+  @if resize($size, $maxSize) == $maxSize {
+    font-size: $maxSize;
+    // You can add additional styles or handle as needed when max size is reached
+  }
+}
+
+// @incldue center();
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin container {
+  margin-inline: vw(100px);
+
+  @media screen and (max-width: 992px) {
+    margin-inline: max(vw(16px), 16px);
+  }
+}
+
+@mixin container2x {
+  margin-inline: vw(140px);
+}
+
+@mixin container-fluid {
+  margin-inline: vw(40px);
+}
