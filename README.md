@@ -1,18 +1,16 @@
-# 🚀 **Expo Template**
+# 🚀 **Nova Next.js Template**
 
-This is a React Native template built with Expo 57. It provides a modern and responsive foundation for building mobile applications. It includes:
+A production-ready Next.js template that provides a modern, scalable foundation for building web applications. It includes:
 
-- Navigation (Auth/Main stacks)
-- Theming and styling
-- API integration
-- State management
-- Localization using i18n
-- Reusable components
-- Utility functions
-- Custom hooks
-- Scripts for easing development tasks
-- Building tool (EAS)
-- An overall ready-for-integration template with an atomic design system.
+- Routing with layouts (Auth/Main groups)
+- Theming and SCSS styling system
+- API integration with RTK Query
+- State management with Redux Toolkit
+- Internationalization (i18n) with dynamic language routing
+- Reusable UI component library
+- Utility functions and custom hooks
+- AI-ready architecture with built-in AI utilities
+- An overall ready-for-integration template with a structured design system.
 
 ## 📋 Table of Contents
 
@@ -28,186 +26,227 @@ This is a React Native template built with Expo 57. It provides a modern and res
 
 ## ✨ Features
 
-- **[React Native](https://reactnative.dev/)**: A framework for building native apps using React.
-- **[Expo](https://expo.dev/)**: A framework and platform for universal React applications.
+- **[Next.js 16](https://nextjs.org/)**: The React framework for production — server-side rendering, static generation, and more.
+- **[React 19](https://react.dev/)**: The latest version of React with concurrent features.
 - **[TypeScript](https://www.typescriptlang.org/)**: A strongly typed programming language that builds on JavaScript.
-- **[React Navigation](https://reactnavigation.org/)**: Routing and navigation for React Native apps.
+- **[SCSS/Sass](https://sass-lang.com/)**: Professional-grade CSS preprocessor with variables, mixins, and functions.
 - **[Redux Toolkit](https://redux-toolkit.js.org/)**: A toolset for efficient Redux development.
 - **[RTK Query](https://redux-toolkit.js.org/rtk-query/overview)**: Powerful data fetching and caching tool.
 - **[React Toastify](https://fkhadra.github.io/react-toastify/)**: Easy-to-use toast notifications.
-- **[React-i18next](https://react.i18next.com/)**: Internationalization for React Native.
-- **[Day.js](https://day.js.org/)**: A lightweight JavaScript date library.
-- **[Flashlist](https://shopify.github.io/flash-list/)**: A performant list component for React Native.
+- **[React-i18next](https://react.i18next.com/)**: Internationalization with dynamic route-based language switching.
 - **[React Hook Form](https://react-hook-form.com/)**: Performant, flexible, and extensible forms with easy-to-use validation.
-- **[Atomic Design System](https://bradfrost.com/blog/post/atomic-web-design/)**: A methodology for creating design systems.
-- **[Husky](https://typicode.github.io/husky/)** (optional): Git hooks made easy.
-- **[ESLint](https://eslint.org/)** (optional): A tool for identifying and fixing problems in JavaScript code.
-- **[Sentry](https://sentry.io/)** (optional): Error monitoring software.
-- **Reusable Components**: Modular and reusable components for easy customization.
-- **State Management**: Integrated state management using Redux or context.
+- **[Yup](https://github.com/jquense/yup)**: Schema-based form validation.
+- **[Lucide React](https://lucide.dev/)**: Beautiful, consistent icon library.
+- **[ESLint](https://eslint.org/)**: A tool for identifying and fixing problems in JavaScript code.
+- **Reusable Components**: Modular UI, layout, shared, and section-based components.
+- **State Management**: Integrated state management using Redux Toolkit with separate slices.
+- **AI Utilities**: Built-in AI adapter, prompts, and constitution for AI-powered features.
 
 ## 🛠️ Installation
 
-To get started with this project, follow these steps:
+To get started with this template, follow these steps:
 
-1. Install the Template:
+1. Create a new project using the template:
    ```bash
-   npx create-nova-expo-template
+   npx create-nova-next-template my-app
    ```
 2. Navigate to the project directory:
    ```bash
-   cd <project-name>
+   cd my-app
    ```
-3. Run the project:
-
+3. Install dependencies:
    ```bash
-   npm start
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
    ```
 
 ### ⚙️ Prerequisites
 
 Ensure you have the following installed:
 
-- **Node.js**: v16.14.0 or higher (currently using v20.17.0)
-- **npm**: v8.5.0 or higher (currently using v10.8.2)
+- **Node.js**: v18.17.0 or higher (recommended v20+)
+- **npm**: v9.0.0 or higher
 
 ## 📚 Usage
 
 To start the development server, run:
 
 ```bash
-npm start
+npm run dev
 ```
 
 To build the project for production, run:
 
 ```bash
-expo build
+npm run build
 ```
 
-To preview the production build, run:
+To start the production server, run:
 
 ```bash
-expo start --no-dev --minify
+npm start
+```
+
+To lint the project, run:
+
+```bash
+npm run lint
 ```
 
 ## 📸 Screenshots
 
 Here are some screenshots of the application:
 
-![Screenshot 1](./screenshots/home.png)
-![Screenshot 2](./screenshots/login.png)
-![Screenshot 3](./screenshots/components.png)
+![Screenshot 1](screenshots/home.png)
+![Screenshot 2](screenshots/login.png)
+![Screenshot 3](screenshots/components.png)
 
 ## 🏗️ Project Structure
 
 ```
-your-app-name/                     # Your new Expo app
-├── 📄 app.json                    # Expo app configuration
-├── 📄 eas.json                    # EAS Build configuration
-├── 📄 expo-env.d.ts               # Expo environment types
-├── 📄 package.json                # Project dependencies
-├── 📄 tsconfig.json               # TypeScript configuration
+your-app-name/                         # Your new Next.js app
+├── 📄 next.config.ts                  # Next.js configuration
+├── 📄 tsconfig.json                   # TypeScript configuration
+├── 📄 package.json                    # Project dependencies
+├── 📄 postcss.config.mjs              # PostCSS configuration
+├── 📄 eslint.config.mjs               # ESLint configuration
+├── 📄 proxy.ts                        # API proxy configuration
 │
-├── 📁 @types/                     # Global TypeScript definitions
-│   ├── 📄 static-files.d.ts       # Static file types
-│   └── 📄 TranslationKeyEnum.ts   # Translation key enums
+├── 📁 app/                            # Next.js App Router
+│   ├── 📄 favicon.ico                 # App favicon
+│   ├── 📁 i18n/                       # Internationalization setup
+│   │   ├── 📄 client.js              # Client-side i18n config
+│   │   ├── 📄 index.js               # Server-side i18n config
+│   │   ├── 📄 settings.ts            # i18n settings (languages, namespaces)
+│   │   └── 📁 locales/               # Translation files
+│   │       ├── 📁 ar/                 # Arabic translations
+│   │       │   └── 📄 common.json     # Common Arabic strings
+│   │       └── 📁 en/                 # English translations
+│   │           └── 📄 common.json     # Common English strings
+│   └── 📁 [lng]/                      # Dynamic language route segment
+│       ├── 📄 layout.tsx              # Root layout (per language)
+│       ├── 📄 globals.scss            # Global styles
+│       ├── 📁 [...not-found]/         # 404 catch-all page
+│       ├── 📁 (auth)/                 # Auth route group
+│       │   ├── 📄 layout.tsx          # Auth layout
+│       │   ├── 📄 layout.module.scss  # Auth layout styles
+│       │   ├── 📁 login/              # Login page
+│       │   └── 📁 register/           # Registration page
+│       └── 📁 (main)/                 # Main app route group
+│           ├── 📄 layout.tsx          # Main layout
+│           ├── 📄 page.tsx            # Home page
+│           ├── 📄 page.module.scss    # Home page styles
+│           ├── 📄 loading.tsx         # Loading UI
+│           ├── 📄 error.tsx           # Error boundary
+│           ├── 📁 dashboard/          # Dashboard page
+│           └── 📁 components/         # Components showcase page
 │
-├── 📁 apis/                       # API layer
-│   ├── 📄 Domain.ts               # API domain configuration
-│   ├── 📄 index.ts                # API exports
-│   ├── 📄 tagTypes.ts             # RTK Query tag types
-│   ├── 📁 @types/                 # API type definitions
-│   ├── 📁 middlewares/            # API middlewares
-│   └── 📁 services/               # API service endpoints
+├── 📁 api/                            # API layer
+│   ├── 📄 Domain.ts                   # API domain/base URL configuration
+│   ├── 📄 index.ts                    # RTK Query API setup & exports
+│   ├── 📄 tagTypes.ts                 # RTK Query cache tag types
+│   ├── 📁 types/                      # API type definitions
+│   ├── 📁 middlewares/                # API middlewares (error handling)
+│   └── 📁 services/                   # API service endpoints
 │
-├── 📁 app/                        # App routing (Expo Router)
-│   ├── 📄 _layout.tsx             # Root layout
-│   ├── 📄 +not-found.tsx          # 404 page
-│   ├── 📄 index.tsx               # Home/Landing page
-│   ├── 📁 (auth)/                 # Authentication stack
-│   │   ├── 📄 _layout.tsx         # Auth layout
-│   │   ├── 📁 forgotPassword/     # Password reset screens
-│   │   ├── 📁 login/              # Login screens
-│   │   ├── 📁 signup/             # Registration screens
-│   │   └── 📁 welcome/            # Welcome/onboarding
-│   └── 📁 (main)/                 # Main app stack
-│       ├── 📄 _layout.tsx         # Main layout
-│       ├── 📁 (tabs)/             # Tab navigation
-│       ├── 📁 screen1/            # Feature screens
-│       ├── 📁 screen2/
-│       └── 📁 screen3/
+├── 📁 components/                     # UI Components
+│   ├── 📁 ui/                         # Base UI components
+│   │   ├── 📁 Button/                 # Button component
+│   │   ├── 📁 Input/                  # Input component (+ DatePicker, Rate, Selection)
+│   │   ├── 📁 Text/                   # Text/Typography component
+│   │   ├── 📁 Icon/                   # Icon component
+│   │   ├── 📁 Modal/                  # Modal component
+│   │   ├── 📁 Spinner/                # Loading spinner
+│   │   ├── 📁 PhoneInput/             # Phone number input
+│   │   └── 📁 LangSwitch/             # Language switcher
+│   ├── 📁 layout/                     # Layout components
+│   │   ├── 📁 Navbar/                 # Navigation bar
+│   │   ├── 📁 Footer/                 # Footer
+│   │   ├── 📁 Sidebar/                # Sidebar navigation
+│   │   ├── 📁 PageWrapper/            # Page wrapper
+│   │   └── 📁 ToastProvider/          # Toast notification provider
+│   ├── 📁 shared/                     # Shared/common components
+│   │   ├── 📁 ConfirmDialog/          # Confirmation dialog
+│   │   ├── 📁 DataTable/              # Data table
+│   │   ├── 📁 EmptyState/             # Empty state placeholder
+│   │   ├── 📁 ErrorView/              # Error display
+│   │   └── 📁 PageLoader/             # Full-page loader
+│   └── 📁 sections/                   # Page-specific sections
+│       ├── 📁 auth/                   # Auth sections (LoginForm, RegisterForm)
+│       └── 📁 home/                   # Home sections (HeroBanner, FeaturesSection)
 │
-├── 📁 assets/                     # Static assets
-│   ├── 📁 fonts/                  # Custom fonts
-│   ├── 📁 icons/                  # Icon components
-│   ├── 📁 images/                 # Image assets
-│   └── 📁 svgs/                   # SVG components
+├── 📁 constants/                      # App constants
+│   ├── 📄 Colors.ts                   # Color palette definitions
+│   └── 📄 assets.ts                   # Asset path constants
 │
-├── 📁 components/                 # UI Components (Atomic Design)
-│   ├── 📁 atoms/                  # Basic building blocks
-│   │   ├── 📁 Button/             # Button component
-│   │   ├── 📁 Input/              # Input component
-│   │   ├── 📁 Text/               # Text component
-│   │   └── 📄 index.ts            # Atom exports
-│   ├── 📁 molecules/              # Component combinations
-│   │   ├── 📁 common/             # Shared molecules
-│   │   └── 📁 scoped/             # Feature-specific molecules
-│   ├── 📁 organisms/              # Complex components
-│   │   ├── 📁 common/             # Shared organisms
-│   │   └── 📁 scoped/             # Feature-specific organisms
-│   ├── 📁 templates/              # Page templates
-│   └── 📁 wrappers/               # Higher-order components
+├── 📁 data/                           # Static data
+│   ├── 📄 home.ts                     # Home page data
+│   └── 📄 navigation.ts              # Navigation menu data
 │
-├── 📁 constants/                  # App constants
-│   ├── 📄 Colors.ts               # Color palette
-│   ├── 📄 FontFamily.ts           # Font definitions
-│   ├── 📄 GlobalStyles.ts         # Global styles
-│   ├── 📄 Metrics.ts              # Screen dimensions
-│   └── 📄 TranslationConfig.ts    # i18n configuration
+├── 📁 hooks/                          # Custom React hooks
+│   ├── 📄 useAbortableQuery.ts        # Abortable RTK Query hook
+│   ├── 📄 useAutoCompleteTranslation.ts # Translation autocomplete
+│   ├── 📄 useGetUserInfo.ts           # User info hook
+│   └── 📄 useScreenSize.ts            # Responsive screen size hook
 │
-├── 📁 hooks/                      # Custom React hooks
-│   ├── 📄 useBiometricLogin.tsx   # Biometric authentication
-│   ├── 📄 useColorScheme.ts       # Theme management
-│   ├── 📄 useFetchTranslation.ts  # Localization hook
-│   └── 📄 useThemeColor.ts        # Color theme hook
+├── 📁 lib/                            # Library utilities
+│   └── 📁 ai/                         # AI integration utilities
+│       ├── 📄 adapter.ts              # AI adapter
+│       ├── 📄 constitution.ts         # AI constitution/rules
+│       ├── 📄 index.ts               # AI exports
+│       └── 📄 prompts.ts             # AI prompt templates
 │
-├── 📁 locale/                     # Internationalization
-│   ├── 📄 ar.json                 # Arabic translations
-│   ├── 📄 en.json                 # English translations
-│   └── 📄 index.ts                # i18n exports
+├── 📁 redux/                          # State management
+│   ├── 📄 index.ts                    # Store configuration
+│   ├── 📄 ReduxProvider.tsx           # Redux provider component
+│   ├── 📄 appReducer.ts              # App state slice
+│   └── 📄 authReducer.ts             # Auth state slice
 │
-├── 📁 redux/                      # State management
-│   ├── 📄 index.ts                # Store configuration
-│   ├── 📄 appReducer.ts           # App state slice
-│   └── 📄 authReducer.ts          # Auth state slice
+├── 📁 styles/                         # Global SCSS styles
+│   ├── 📄 all.scss                    # Style barrel file
+│   ├── 📄 _colors.scss               # Color variables
+│   ├── 📄 _variables.scss            # SCSS variables
+│   ├── 📄 _mixins.scss               # SCSS mixins
+│   ├── 📄 _functions.scss            # SCSS functions
+│   ├── 📄 _typography.scss           # Typography system
+│   └── 📄 _responsive.scss           # Responsive breakpoints
 │
-├── 📁 scripts/                    # Development scripts
-│   ├── 📄 generate-svg.js         # SVG component generator
-│   ├── 📄 removeLogs.js           # Production log removal
-│   ├── 📄 sync-translations.js    # Translation sync
-│   └── 📄 translate.js            # Auto-translation tool
+├── 📁 types/                          # Global TypeScript definitions
+│   ├── 📄 common.ts                   # Common types
+│   ├── 📄 static-files.d.ts          # Static file type declarations
+│   └── 📄 TranslationKeyEnum.ts      # Translation key enums
 │
-├── 📁 styles/                     # Global styles
+├── 📁 utils/                          # Utility functions
+│   ├── 📄 CN.ts                       # Class name utility
+│   ├── 📄 debounce.ts                # Debounce utility
+│   ├── 📄 getSerializedQueryArgs.ts   # Query serialization
+│   ├── 📄 handleErrors.ts            # Error handling
+│   ├── 📄 isDev.ts                    # Environment check
+│   ├── 📄 loginHandler.ts            # Login helpers
+│   ├── 📄 logoutHandler.ts           # Logout helpers
+│   ├── 📄 showAuthToast.ts           # Auth toast notifications
+│   └── 📄 validationSchemas.ts       # Yup validation schemas
 │
-└── 📁 utils/                      # Utility functions
-    ├── 📄 debounce.ts             # Debounce utility
-    ├── 📄 handleErrors.ts         # Error handling
-    ├── 📄 loginHandler.ts         # Authentication helpers
-    └── 📄 showSuccessMsg.ts       # Success messaging
+└── 📁 public/                         # Static public assets
+    ├── 📁 icons/                      # SVG icons
+    └── 📁 images/                     # Image assets
 ```
 
 ### 📂 Key Directories Explained
 
-- **`app/`**: Uses Expo Router for file-based routing with layout components
-- **`components/`**: Follows Atomic Design methodology (atoms → molecules → organisms → templates)
-- **`apis/`**: Centralized API layer with RTK Query for data fetching and caching
-- **`redux/`**: State management using Redux Toolkit with separate slices
-- **`hooks/`**: Custom React hooks for reusable logic
-- **`constants/`**: App-wide constants including colors, fonts, and metrics
-- **`locale/`**: Multi-language support with JSON translation files
-- **`utils/`**: Helper functions and utilities
-- **`scripts/`**: Development automation scripts
+- **`app/`**: Uses Next.js App Router with dynamic `[lng]` segment for i18n-based routing and route groups for auth/main layouts
+- **`components/`**: Organized into `ui` (base primitives), `layout` (structural), `shared` (reusable patterns), and `sections` (page-specific)
+- **`api/`**: Centralized API layer with RTK Query for data fetching, caching, and automatic cache invalidation
+- **`redux/`**: State management using Redux Toolkit with separate slices for app and auth state
+- **`hooks/`**: Custom React hooks for reusable logic (screen size, query management, user info)
+- **`lib/`**: Library utilities including AI integration adapters and prompt management
+- **`constants/`**: App-wide constants including color palette and asset paths
+- **`styles/`**: Global SCSS design system with variables, mixins, functions, and responsive breakpoints
+- **`data/`**: Static data files for navigation and page content
+- **`utils/`**: Helper functions for error handling, authentication, validation, and more
 
 ## 📋 Changelog
 
