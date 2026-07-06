@@ -95,9 +95,9 @@ expo start --no-dev --minify
 
 Here are some screenshots of the application:
 
-![Screenshot 1](./screenshots/home.jpg)
-![Screenshot 2](./screenshots/login.jpg)
-![Screenshot 3](./screenshots/components.jpg)
+![Screenshot 1](./screenshots/home.png)
+![Screenshot 2](./screenshots/login.png)
+![Screenshot 3](./screenshots/components.png)
 
 ## 🏗️ Project Structure
 
