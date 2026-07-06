@@ -1,8 +1,0 @@
-@use "@/styles/all" as *;
-
-.main {
-  @include container;
-  @include flex-col;
-  gap: min(vw(24px), 24px);
-  padding-block: min(vw(48px), 48px);
-}
