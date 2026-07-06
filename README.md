@@ -1,92 +1,226 @@
-# Nova Next Template
+# 🚀 **Expo Template**
 
-This is a modern, highly scalable [Next.js](https://nextjs.org) enterprise template bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app), featuring a comprehensive, organized architecture.
+This is a React Native template built with Expo 57. It provides a modern and responsive foundation for building mobile applications. It includes:
 
-## 📂 Project Structure
+- Navigation (Auth/Main stacks)
+- Theming and styling
+- API integration
+- State management
+- Localization using i18n
+- Reusable components
+- Utility functions
+- Custom hooks
+- Scripts for easing development tasks
+- Building tool (EAS)
+- An overall ready-for-integration template with an atomic design system.
 
-This project follows a feature-driven, modular structure to ensure maintainability, scalability, and clean separation of concerns.
+## 📋 Table of Contents
 
-```text
-nova-next-template/
-├── app/                  # Next.js App Router (Pages, Layouts, API Routes)
-│   ├── (auth)/           # Authentication layout group
-│   ├── api/              # Backend API routes
-│   └── dashboard/        # Dashboard layout group
-├── assets/               # Static assets (images, fonts, raw media)
-├── components/           # Reusable UI components
-│   ├── ui/               # Base design system components (Button, Input, Modal, etc.)
-│   └── layout/           # Layout components
-│   └── shared/           # Shared components
-├── constants/            # Application-wide constants & enums (e.g., COLORS.ts)
-├── features/             # Feature-based modules (grouping logic, UI, and state per feature)
-├── hooks/                # Custom React Hooks (e.g., useAutoCompleteTranslation.ts)
-├── lib/                  # 3rd-party library configurations & wrappers
-├── providers/            # React Context providers for global state/wrappers
-├── public/               # Publicly accessible static files served at the root
-├── services/             # API clients, endpoint definitions, and external data fetching
-├── store/                # Global state management (e.g., Zustand, Redux)
-├── styles/               # Global SCSS architecture
-│   ├── _colors.scss      # Color tokens & CSS variable mappings
-│   ├── _fonts.scss       # Global font definitions
-│   ├── _mixins.scss      # Responsive utilities (e.g., VW-based calculations)
-│   └── all.scss          # Central export file for components
-├── types/                # Global TypeScript definitions & interfaces
-└── utils/                # Helper functions (e.g., CN.ts, debounce.ts)
-```
+- [✨ Features](#-features)
+- [🛠️ Installation](#️-installation)
+- [⚙️ Prerequisites](#️-prerequisites)
+- [📚 Usage](#-usage)
+- [📸 Screenshots](#-screenshots)
+- [🏗️ Project Structure](#️-project-structure)
+- [📋 Changelog](#-changelog)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
-### Key Directories Explained:
+## ✨ Features
 
-- **`app/`**: Contains the Next.js routing system. It's strictly used for routing, page layouts, and backend API routes. Heavy logic is abstracted away into features or services.
-- **`components/ui/`**: Houses our strictly visual, stateless components inspired by ShadCN and tailored to our SCSS/Tailwind design system.
-- **`styles/`**: Centralized SCSS stylesheets that manage our global colors, typography, and responsive mixins (like our `vw` calculation logic).
-- **`utils/` & `hooks/`**: Shared logic that doesn't belong to a specific feature domain but is used application-wide.
+- **[React Native](https://reactnative.dev/)**: A framework for building native apps using React.
+- **[Expo](https://expo.dev/)**: A framework and platform for universal React applications.
+- **[TypeScript](https://www.typescriptlang.org/)**: A strongly typed programming language that builds on JavaScript.
+- **[React Navigation](https://reactnavigation.org/)**: Routing and navigation for React Native apps.
+- **[Redux Toolkit](https://redux-toolkit.js.org/)**: A toolset for efficient Redux development.
+- **[RTK Query](https://redux-toolkit.js.org/rtk-query/overview)**: Powerful data fetching and caching tool.
+- **[React Toastify](https://fkhadra.github.io/react-toastify/)**: Easy-to-use toast notifications.
+- **[React-i18next](https://react.i18next.com/)**: Internationalization for React Native.
+- **[Day.js](https://day.js.org/)**: A lightweight JavaScript date library.
+- **[Flashlist](https://shopify.github.io/flash-list/)**: A performant list component for React Native.
+- **[React Hook Form](https://react-hook-form.com/)**: Performant, flexible, and extensible forms with easy-to-use validation.
+- **[Atomic Design System](https://bradfrost.com/blog/post/atomic-web-design/)**: A methodology for creating design systems.
+- **[Husky](https://typicode.github.io/husky/)** (optional): Git hooks made easy.
+- **[ESLint](https://eslint.org/)** (optional): A tool for identifying and fixing problems in JavaScript code.
+- **[Sentry](https://sentry.io/)** (optional): Error monitoring software.
+- **Reusable Components**: Modular and reusable components for easy customization.
+- **State Management**: Integrated state management using Redux or context.
 
----
+## 🛠️ Installation
 
-## 📦 Main Packages & Tech Stack
+To get started with this project, follow these steps:
 
-This template comes pre-configured with industry-standard tools:
+1. Install the Template:
+   ```bash
+   npx create-nova-expo-template
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd <project-name>
+   ```
+3. Run the project:
 
-- **Core**: [Next.js](https://nextjs.org/) (App Router), React, TypeScript
-- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) & [Sass](https://sass-lang.com/) (SCSS Modules & Global Styles)
-- **State Management & Data Fetching**: [Redux Toolkit](https://redux-toolkit.js.org/) & RTK Query
-- **Forms**: [React Hook Form](https://react-hook-form.com/)
-- **Internationalization**: [react-i18next](https://react.i18next.com/)
-- **Utilities**: `clsx`, `tailwind-merge`
+   ```bash
+   npm start
+   ```
 
----
+### ⚙️ Prerequisites
 
-## 🚀 Getting Started
+Ensure you have the following installed:
 
-First, run the development server:
+- **Node.js**: v16.14.0 or higher (currently using v20.17.0)
+- **npm**: v8.5.0 or higher (currently using v10.8.2)
+
+## 📚 Usage
+
+To start the development server, run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To build the project for production, run:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+expo build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To preview the production build, run:
 
-## 📚 Learn More
+```bash
+expo start --no-dev --minify
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 📸 Screenshots
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Here are some screenshots of the application:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+![Screenshot 1](screenshots/landing.jpg)
+![Screenshot 2](screenshots/login.jpg)
+![Screenshot 3](screenshots/app.jpg)
+![Screenshot 4](screenshots/modal.jpg)
+![Screenshot 5](screenshots/actionsheet.jpg)
+![Screenshot 6](screenshots/darkmode.jpg)
+![Screenshot 7](screenshots/flashlist.jpg)
 
-## ☁️ Deploy on Vercel
+## 🏗️ Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+your-app-name/                     # Your new Expo app
+├── 📄 app.json                    # Expo app configuration
+├── 📄 eas.json                    # EAS Build configuration
+├── 📄 expo-env.d.ts               # Expo environment types
+├── 📄 package.json                # Project dependencies
+├── 📄 tsconfig.json               # TypeScript configuration
+│
+├── 📁 @types/                     # Global TypeScript definitions
+│   ├── 📄 static-files.d.ts       # Static file types
+│   └── 📄 TranslationKeyEnum.ts   # Translation key enums
+│
+├── 📁 apis/                       # API layer
+│   ├── 📄 Domain.ts               # API domain configuration
+│   ├── 📄 index.ts                # API exports
+│   ├── 📄 tagTypes.ts             # RTK Query tag types
+│   ├── 📁 @types/                 # API type definitions
+│   ├── 📁 middlewares/            # API middlewares
+│   └── 📁 services/               # API service endpoints
+│
+├── 📁 app/                        # App routing (Expo Router)
+│   ├── 📄 _layout.tsx             # Root layout
+│   ├── 📄 +not-found.tsx          # 404 page
+│   ├── 📄 index.tsx               # Home/Landing page
+│   ├── 📁 (auth)/                 # Authentication stack
+│   │   ├── 📄 _layout.tsx         # Auth layout
+│   │   ├── 📁 forgotPassword/     # Password reset screens
+│   │   ├── 📁 login/              # Login screens
+│   │   ├── 📁 signup/             # Registration screens
+│   │   └── 📁 welcome/            # Welcome/onboarding
+│   └── 📁 (main)/                 # Main app stack
+│       ├── 📄 _layout.tsx         # Main layout
+│       ├── 📁 (tabs)/             # Tab navigation
+│       ├── 📁 screen1/            # Feature screens
+│       ├── 📁 screen2/
+│       └── 📁 screen3/
+│
+├── 📁 assets/                     # Static assets
+│   ├── 📁 fonts/                  # Custom fonts
+│   ├── 📁 icons/                  # Icon components
+│   ├── 📁 images/                 # Image assets
+│   └── 📁 svgs/                   # SVG components
+│
+├── 📁 components/                 # UI Components (Atomic Design)
+│   ├── 📁 atoms/                  # Basic building blocks
+│   │   ├── 📁 Button/             # Button component
+│   │   ├── 📁 Input/              # Input component
+│   │   ├── 📁 Text/               # Text component
+│   │   └── 📄 index.ts            # Atom exports
+│   ├── 📁 molecules/              # Component combinations
+│   │   ├── 📁 common/             # Shared molecules
+│   │   └── 📁 scoped/             # Feature-specific molecules
+│   ├── 📁 organisms/              # Complex components
+│   │   ├── 📁 common/             # Shared organisms
+│   │   └── 📁 scoped/             # Feature-specific organisms
+│   ├── 📁 templates/              # Page templates
+│   └── 📁 wrappers/               # Higher-order components
+│
+├── 📁 constants/                  # App constants
+│   ├── 📄 Colors.ts               # Color palette
+│   ├── 📄 FontFamily.ts           # Font definitions
+│   ├── 📄 GlobalStyles.ts         # Global styles
+│   ├── 📄 Metrics.ts              # Screen dimensions
+│   └── 📄 TranslationConfig.ts    # i18n configuration
+│
+├── 📁 hooks/                      # Custom React hooks
+│   ├── 📄 useBiometricLogin.tsx   # Biometric authentication
+│   ├── 📄 useColorScheme.ts       # Theme management
+│   ├── 📄 useFetchTranslation.ts  # Localization hook
+│   └── 📄 useThemeColor.ts        # Color theme hook
+│
+├── 📁 locale/                     # Internationalization
+│   ├── 📄 ar.json                 # Arabic translations
+│   ├── 📄 en.json                 # English translations
+│   └── 📄 index.ts                # i18n exports
+│
+├── 📁 redux/                      # State management
+│   ├── 📄 index.ts                # Store configuration
+│   ├── 📄 appReducer.ts           # App state slice
+│   └── 📄 authReducer.ts          # Auth state slice
+│
+├── 📁 scripts/                    # Development scripts
+│   ├── 📄 generate-svg.js         # SVG component generator
+│   ├── 📄 removeLogs.js           # Production log removal
+│   ├── 📄 sync-translations.js    # Translation sync
+│   └── 📄 translate.js            # Auto-translation tool
+│
+├── 📁 styles/                     # Global styles
+│
+└── 📁 utils/                      # Utility functions
+    ├── 📄 debounce.ts             # Debounce utility
+    ├── 📄 handleErrors.ts         # Error handling
+    ├── 📄 loginHandler.ts         # Authentication helpers
+    └── 📄 showSuccessMsg.ts       # Success messaging
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 📂 Key Directories Explained
+
+- **`app/`**: Uses Expo Router for file-based routing with layout components
+- **`components/`**: Follows Atomic Design methodology (atoms → molecules → organisms → templates)
+- **`apis/`**: Centralized API layer with RTK Query for data fetching and caching
+- **`redux/`**: State management using Redux Toolkit with separate slices
+- **`hooks/`**: Custom React hooks for reusable logic
+- **`constants/`**: App-wide constants including colors, fonts, and metrics
+- **`locale/`**: Multi-language support with JSON translation files
+- **`utils/`**: Helper functions and utilities
+- **`scripts/`**: Development automation scripts
+
+## 📋 Changelog
+
+See the [CHANGELOG](CHANGELOG.md) for a history of changes to this project.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
+
+## 📄 License
+
+This project is licensed under the MIT License.

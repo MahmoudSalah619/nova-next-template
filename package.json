@@ -1,42 +1,46 @@
 {
-  "name": "nova-next-template",
-  "version": "0.1.0",
-  "private": true,
+  "name": "create-nova-next-template",
+  "version": "2.0.3",
+  "description": "A template for creating a new Next.js web application with TypeScript, SCSS, Redux Toolkit, RTK Query, i18n, and Atomic Design system.",
+  "main": "index.js",
+  "author": "mahmoud salah <mahmoud.s.m619@gmail.com>",
+  "keywords": [
+    "react",
+    "next",
+    "nextjs",
+    "next.js",
+    "template",
+    "next-template",
+    "nova",
+    "novabyte",
+    "bit68",
+    "typescript",
+    "scss",
+    "redux",
+    "rtk-query",
+    "atomic-design",
+    "i18n",
+    "plop",
+    "web-app"
+  ],
+  "bin": {
+    "create-nova-next-template": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MahmoudSalah619/nova-next-template"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "license": "MIT",
   "dependencies": {
-    "@hookform/resolvers": "^5.4.0",
-    "@reduxjs/toolkit": "^2.11.2",
-    "clsx": "^2.1.1",
-    "i18next": "^26.0.10",
-    "i18next-browser-languagedetector": "^8.2.1",
-    "i18next-resources-to-backend": "^1.2.1",
-    "lucide-react": "^1.14.0",
-    "next": "16.2.6",
-    "react": "19.2.4",
-    "react-cookie": "^8.1.2",
-    "react-dom": "19.2.4",
-    "react-hook-form": "^7.75.0",
-    "react-i18next": "^17.0.7",
-    "react-phone-input-2": "^2.15.1",
-    "react-redux": "^9.3.0",
-    "react-toastify": "^11.1.0",
-    "sass": "^1.99.0",
-    "tailwind-merge": "^3.5.0",
-    "yup": "^1.7.1"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "fs-extra": "^11.3.0"
   }
 }
