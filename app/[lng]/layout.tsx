@@ -1,8 +1,8 @@
 import { ReduxProvider } from "@/redux/ReduxProvider";
-import "./globals.scss";
 import { dir } from "i18next";
 import { ToastProvider } from "@/components/layout/ToastProvider";
 import { PageLoader } from "@/components/shared/PageLoader";
+import "./globals.scss";
 
 export default async function RootLayout({
   children,

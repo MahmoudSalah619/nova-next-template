@@ -6,7 +6,8 @@
 - **Language**: TypeScript 5
 - **UI**: React 19 + components from `@/components/ui` (Button, Input, Label, Text, etc.)
 - **Styling**: Tailwind v4 (`tw` shortcode) + SCSS Modules per component, global SCSS in `styles/global.scss`
-- **State**: Redux Toolkit 2.x — data fetching via RTK Query (`createApi` + `baseQuery`)
+- **State**: Redux Toolkit 2.x (client UI / session state)
+- **Data fetching**: native `fetch` client in `lib/api/` (`apiMethods`) + typed `services/` — runs in Server & Client Components
 - **Forms**: React Hook Form
 - **i18n**: react-i18next
 - **Testing**: Vitest
@@ -18,9 +19,9 @@ app/              ← Next.js App Router pages and layouts
 components/ui/    ← Reusable UI primitives only (no business logic)
 features/<name>/  ← Feature-specific components, hooks, and logic
 hooks/            ← Shared custom hooks (prefix with `use`)
-lib/              ← Utilities, AI adapter, and shared helpers
-redux/            ← Store, slices, RTK Query APIs
-services/         ← API service definitions
+lib/              ← Utilities, AI adapter, and the fetch API client (lib/api/)
+redux/            ← Store and slices (client state)
+services/         ← Typed endpoint functions built on lib/api (e.g. services/auth/)
 styles/           ← Global SCSS
 types/            ← Shared TypeScript types
 ```

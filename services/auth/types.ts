@@ -31,6 +31,7 @@ export interface ForgotPasswordResponse {
     detail?: string;
   };
 }
+
 export interface GetResetOtpBody {
   email: string;
 }
@@ -44,4 +45,8 @@ export interface ResetPassword {
   email: string;
   otp: string;
   new_password: string;
+}
+
+export interface RefreshTokenResponse {
+  access_token: string;
 }

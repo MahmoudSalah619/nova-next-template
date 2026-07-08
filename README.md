@@ -20,11 +20,11 @@ nova-next-template/
 ├── constants/            # Application-wide constants & enums (e.g., COLORS.ts)
 ├── features/             # Feature-based modules (grouping logic, UI, and state per feature)
 ├── hooks/                # Custom React Hooks (e.g., useAutoCompleteTranslation.ts)
-├── lib/                  # 3rd-party library configurations & wrappers
+├── lib/                  # 3rd-party library configs & the fetch API client (lib/api/)
 ├── providers/            # React Context providers for global state/wrappers
 ├── public/               # Publicly accessible static files served at the root
-├── services/             # API clients, endpoint definitions, and external data fetching
-├── store/                # Global state management (e.g., Zustand, Redux)
+├── services/             # Typed endpoint functions (e.g. services/auth/) built on lib/api
+├── redux/                # Global client state — store & slices (Redux Toolkit)
 ├── styles/               # Global SCSS architecture
 │   ├── _colors.scss      # Color tokens & CSS variable mappings
 │   ├── _fonts.scss       # Global font definitions
@@ -49,7 +49,8 @@ This template comes pre-configured with industry-standard tools:
 
 - **Core**: [Next.js](https://nextjs.org/) (App Router), React, TypeScript
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) & [Sass](https://sass-lang.com/) (SCSS Modules & Global Styles)
-- **State Management & Data Fetching**: [Redux Toolkit](https://redux-toolkit.js.org/) & RTK Query
+- **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/) (client UI / session state)
+- **Data Fetching**: Native `fetch` client (`lib/api/`) + typed `services/` — works in Server **and** Client Components
 - **Forms**: [React Hook Form](https://react-hook-form.com/)
 - **Internationalization**: [react-i18next](https://react.i18next.com/)
 - **Utilities**: `clsx`, `tailwind-merge`
@@ -73,6 +74,57 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+### Environment variables
+
+Copy `.env.example` to `.env.local` and set the backend origin:
+
+```bash
+cp .env.example .env.local
+```
+
+```dotenv
+# Requests are sent to `${NEXT_PUBLIC_API_URL}/${lang}/api/<path>`.
+# Leave empty for same-origin relative requests.
+NEXT_PUBLIC_API_URL=https://api.example.com
+```
+
+## 🔌 Data Fetching
+
+Data is fetched with a native `fetch` client (`lib/api/`) rather than RTK Query, so **the same service functions run in both Server and Client Components**. The auth token is stored in a cookie (not `localStorage`) so Server Components can authenticate during SSR.
+
+1. **Define an endpoint** in `services/<domain>/` using `apiMethods`:
+
+   ```ts
+   // services/products/index.ts
+   import { apiMethods, type ApiFetchOptions } from "@/lib/api";
+   import type { Product } from "./types";
+
+   export function getProducts(options?: ApiFetchOptions) {
+     return apiMethods.get<Product[]>("/products", options);
+   }
+   ```
+
+2. **In a Server Component** — call it directly with `await` and opt into caching:
+
+   ```tsx
+   const products = await getProducts(); // { next: { revalidate: 60 } } to cache
+   ```
+
+3. **In a Client Component** — call it directly inside an effect (query) or an event handler (mutation), tracking state with `useState`:
+
+   ```tsx
+   "use client";
+   useEffect(() => {
+     const controller = new AbortController();
+     getProducts({ signal: controller.signal })
+       .then(setData)
+       .catch(handleErrors);
+     return () => controller.abort();
+   }, []);
+   ```
+
+Failed requests throw a typed `ApiError` (`status`, `data`, `isNetworkError`); pass it to `utils/handleErrors` to surface a toast.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
