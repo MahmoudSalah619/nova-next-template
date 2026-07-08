@@ -1,3 +1,6 @@
+/**
+ * Shared response/request shapes used across service modules.
+ */
 export interface PaginatedResponse<T> {
   count: number;
   next: string | null;

@@ -10,7 +10,8 @@ import { Input } from "@/components/ui/Input";
 import { PhoneInput } from "@/components/ui/PhoneInput";
 import { Text } from "@/components/ui/Text";
 import { toast } from "react-toastify";
-import { useLoginUserMutation } from "@/api/services/auth";
+import { useState } from "react";
+import { login as loginRequest } from "@/services/auth";
 import loginHandler from "@/utils/loginHandler";
 import { loginSchema, type LoginFormValues } from "@/utils/validationSchemas";
 import styles from "./LoginForm.module.scss";
@@ -22,7 +23,7 @@ interface LoginFormProps {
 export function LoginForm({ lng }: LoginFormProps) {
   const router = useRouter();
   const { t } = useTranslation(lng, "common");
-  const [loginUser] = useLoginUserMutation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -34,14 +35,24 @@ export function LoginForm({ lng }: LoginFormProps) {
   });
 
   const onSubmit = async (data: LoginFormValues) => {
+    setIsLoading(true);
     try {
-      // const result = await loginUser({ email: data.email, password: data.password }).unwrap();
-      // loginHandler({ token: result.access_token, refreshToken: result.refresh_token });
-      loginHandler({ token: "aaaaaaaaaaaaaaaa", refreshToken: "aaaaaaaaaaaa" });
+      const result = await loginRequest({
+        email: data.email,
+        password: data.password,
+      });
+
+      loginHandler({
+        token: result.access_token,
+        refreshToken: result.refresh_token,
+      });
       toast.success(t("LOGIN_SUCCESS"));
       router.push(`/${lng}`);
     } catch {
+      // Show our own copy instead of the generic API error toast.
       toast.error(t("SIGN_IN_FAILED"));
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -139,7 +150,7 @@ export function LoginForm({ lng }: LoginFormProps) {
               variant="primary"
               title="SIGN_IN"
               isFullWidth
-              disabled={isSubmitting}
+              disabled={isSubmitting || isLoading}
             />
           </div>
         </form>

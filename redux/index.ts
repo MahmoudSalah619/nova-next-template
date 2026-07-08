@@ -1,23 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import rtkQueryErrorLogger from "apis/middlewares/errorMiddleware";
 import appReducer from "./appReducer";
 import authReducer from "./authReducer";
-import api from "@/api";
+import { getClientToken } from "@/lib/api";
 
-const token =
-  typeof window !== "undefined" ? localStorage.getItem("token") : null;
+// Hydrate the auth token from the session cookie on the client. On the server
+// this is `null`; Server Components read the token directly via `getToken()`.
+const token = getClientToken();
 
 const store = configureStore({
   reducer: {
-    [api.reducerPath]: api.reducer,
     auth: authReducer,
     app: appReducer,
   },
   preloadedState: {
     auth: { token, userData: null },
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
 });
 
 export default store;

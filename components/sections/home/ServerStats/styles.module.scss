@@ -1,0 +1,51 @@
+@use "@/styles/all" as *;
+
+.section {
+  @include flex-col;
+  gap: min(vw(56px), 56px);
+}
+
+.header {
+  @include flex-col;
+  align-items: center;
+  text-align: center;
+  gap: min(vw(16px), 16px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: min(vw(5px), 5px) min(vw(14px), 14px);
+  background: rgba(110, 107, 207, 0.1);
+  border: 1px solid rgba(110, 107, 207, 0.25);
+  border-radius: 100px;
+}
+
+.title {
+  max-width: resize(580px, 580px);
+  line-height: 1.2;
+}
+
+.subtitle {
+  max-width: resize(560px, 560px);
+  line-height: 1.65;
+}
+
+.grid {
+  @include grid(4, 24px);
+
+  @include tablet {
+    @include grid(2, 16px);
+  }
+}
+
+.card {
+  @include flex-col;
+  align-items: center;
+  text-align: center;
+  gap: min(vw(8px), 8px);
+  padding: min(vw(32px), 32px) min(vw(20px), 20px);
+  border: 1px solid $neutral200;
+  border-radius: 16px;
+  background: $neutral0;
+}

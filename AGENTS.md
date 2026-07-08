@@ -1,5 +1,13 @@
 # AGENTS.md
 
+<!-- BEGIN:nextjs-agent-rules -->
+ 
+# Next.js: ALWAYS read docs before coding
+ 
+Before any Next.js work, find and read the relevant doc in `node_modules/next/dist/docs/`. Your training data is outdated — the docs are the source of truth.
+ 
+<!-- END:nextjs-agent-rules -->
+
 ## Project Overview
 
 Next.js 16.2.6 app using App Router, TypeScript, Tailwind v4, Redux Toolkit, React Hook Form, react-i18next, and Sass.
@@ -34,7 +42,7 @@ The `data/` folder holds static arrays and objects that are displayed in the UI 
 | Situation | Use `data/`? |
 | --- | --- |
 | Static list rendered in a section (features, stats, nav links) | ✅ Yes |
-| Content that changes per user or comes from an API | ❌ No — use RTK Query |
+| Content that changes per user or comes from an API | ❌ No — fetch it via a `services/` function |
 | One-off config used only inside a single component | ❌ No — keep it local |
 | Shared across multiple components | ✅ Yes |
 
@@ -82,7 +90,7 @@ import { FEATURES_DATA } from "@/data/home";
 
 - Main packages: `next@16.2.6`, `react@19.2.4`, `react-dom@19.2.4`, `tailwindcss@4`, `reduxjs/toolkit@2.11.2`
 - Styling: SCSS modules for components, global SCSS in `styles/all.scss` — do NOT use Tailwind utility classes
-- Data fetching: RTK Query with `createApi` and `baseQuery`
+- Data fetching: `fetch`-based client in `lib/api/` (`apiMethods`) + typed `services/`. Works in Server **and** Client Components.
 - Forms: React Hook Form
 - Routing: App Router (`app/` directory)
 
@@ -346,16 +354,84 @@ Build layouts with `display: flex` / `flex-wrap: wrap` so they reflow between 14
 }
 ```
 
+## Data Fetching (`lib/api/` + `services/`)
+
+This template uses a plain `fetch` client instead of RTK Query, so **the same code runs in Server and Client Components**. Never call `fetch`/`axios` directly in a component and never hardcode a URL — always go through a `services/` function.
+
+**Layers:**
+
+| Path | Responsibility |
+| --- | --- |
+| `lib/api/client.ts` | `apiFetch` / `apiMethods` — builds the URL, injects auth + language, parses JSON, throws `ApiError`. |
+| `lib/api/session.ts` | Reads/writes the token cookie (server via `next/headers`, client via `document.cookie`). |
+| `lib/api/ApiError.ts` | Typed error (`status`, `data`, `isNetworkError`). |
+| `services/<domain>/` | Typed endpoint functions + co-located `types.ts` (e.g. `services/auth`). |
+
+> The base URL comes from `NEXT_PUBLIC_API_URL` (see `.env.example`). Requests are sent to `${baseUrl}/${lang}/api/<path>`. The auth token lives in a **cookie** (not `localStorage`) so Server Components can authenticate during SSR.
+
+**Adding an endpoint** — create/extend a file in `services/<domain>/`:
+
+```ts
+// services/products/index.ts
+import { apiMethods, type ApiFetchOptions } from "@/lib/api";
+import type { Product } from "./types";
+
+export function getProducts(options?: ApiFetchOptions) {
+  return apiMethods.get<Product[]>("/products", options);
+}
+```
+
+**Server Component** — call the service directly with `await`; use Next.js cache options:
+
+```tsx
+// app/[lng]/(main)/products/page.tsx
+import { getProducts } from "@/services/products";
+
+export default async function ProductsPage() {
+  const products = await getProducts(); // add { next: { revalidate: 60, tags: ["products"] } } to cache
+  return <ProductList items={products} />;
+}
+```
+
+**Client Component** — call the service directly inside an effect (query) or an event handler (mutation), tracking loading/error with local `useState`:
+
+```tsx
+"use client";
+import { useEffect, useState } from "react";
+import { getProducts } from "@/services/products";
+import type { Product } from "@/services/products/types";
+
+function ProductList() {
+  const [data, setData] = useState<Product[]>();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    getProducts({ signal: controller.signal })
+      .then((res) => setData(res))
+      .catch((err) => {
+        if (!controller.signal.aborted) handleErrors(err);
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setIsLoading(false);
+      });
+    return () => controller.abort();
+  }, []);
+  // …
+}
+```
+
+Errors thrown by `apiFetch` are `ApiError`; pass them to `handleErrors` to surface a toast.
+
 ## State Management
 
 - Global state: Redux slices in `redux/` — use `RootState` and `AppDispatch` from `redux/index.ts`
-- API calls: RTK Query via the base API in `app/api/`. Add new endpoints there; never use `fetch` or `axios` directly.
+- Server data: fetch it via a `services/` function (see **Data Fetching** above), not Redux. Redux is for client UI/session state only.
 - Selectors: Colocate with their slice, not in components
 - Do NOT create local state for data that belongs in Redux
 
 ## Shared Hooks (`hooks/`)
 
-- `useAbortableQuery` — RTK Query wrapper with abort support
 - `useAutoCompleteTranslation` — i18n autocomplete helper
 - `useGetUserInfo` — access current authenticated user
 - `useScreenSize` — responsive breakpoint detection
