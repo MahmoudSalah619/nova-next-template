@@ -21,11 +21,5 @@ const FEATURES_DATA = [
   },
 ] as const;
 
-const STATS_DATA = [
-  { value: "10K+", labelKey: "STAT_USERS_LABEL" },
-  { value: "500+", labelKey: "STAT_PROJECTS_LABEL" },
-  { value: "99.9%", labelKey: "STAT_UPTIME_LABEL" },
-  { value: "150+", labelKey: "STAT_COUNTRIES_LABEL" },
-] as const;
 
-export { FEATURES_DATA, STATS_DATA };
+export { FEATURES_DATA };
